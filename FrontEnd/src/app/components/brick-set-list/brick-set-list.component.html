@@ -1,0 +1,13 @@
+<div id="brick-set-list-container" *ngFor="let brickSet of brickSets">
+  <div class="card mb-3 brick-set-card text-center bg-info text-white">
+    <h3 class="card-header">{{brickSet.name}}</h3>
+    <div class="card-body">
+      <h6 class="card-subtitle">{{brickSet.subCategory.category.name}}</h6>
+    </div>
+    <div class="card-footer text-muted">
+      <a href="#">
+        <h5 class="card-title text-warning">{{brickSet.serialNumber}}</h5>
+      </a>
+    </div>
+  </div>
+</div>

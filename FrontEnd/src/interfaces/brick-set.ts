@@ -8,6 +8,5 @@ export interface BrickSet {
   serialNumber: string;
   subCategory: SubCategory;
   images: Image;
-  videoUrl: string;
   price: number;
 }

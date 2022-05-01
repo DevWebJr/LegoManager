@@ -22,19 +22,17 @@ public class BrickSet implements Serializable {
     private SubCategory subCategory;
     @OneToMany(targetEntity = Image.class, cascade = CascadeType.REMOVE)
     private List<Image> images = new ArrayList<>();
-    private String videoUrl;
     private int price;
 
     public BrickSet() {}
 
-    public BrickSet(Long id, String name, String description, String serialNumber, SubCategory subCategory, List<Image> images, String videoUrl, int price) {
+    public BrickSet(Long id, String name, String description, String serialNumber, SubCategory subCategory, List<Image> images, int price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.serialNumber = serialNumber;
         this.subCategory = subCategory;
         this.images = images;
-        this.videoUrl = videoUrl;
         this.price = price;
     }
 
@@ -86,14 +84,6 @@ public class BrickSet implements Serializable {
         this.images = images;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -111,7 +101,6 @@ public class BrickSet implements Serializable {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", subCategory=" + subCategory +
                 ", images=" + images +
-                ", videoUrl='" + videoUrl + '\'' +
                 ", price=" + price +
                 '}';
     }
