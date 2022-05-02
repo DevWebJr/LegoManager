@@ -9,7 +9,27 @@
   padding: 1vw;
   min-width: 27vw;
   max-width: 27vw;
-  min-height: 15vw;
-  max-height: 15vw;
-  border-radius: .5rem;
+  height: auto;
+}
+
+.brickSet-card-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 5.3vw;
+  max-height: 5.3vw;
+}
+
+.brickSet-card-body{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.brickSet-card-body-content{
+  padding: 1.5vw;
+}
+
+.brickSet-card-footer{
 }

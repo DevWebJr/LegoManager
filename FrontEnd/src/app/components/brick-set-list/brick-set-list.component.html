@@ -1,12 +1,15 @@
-<div class="container-fluid brickSet-card-container">
-  <div class="text-center bg-info text-white brickSet-card" *ngFor="let brickSet of brickSets">
-    <h3 class="card-header">{{brickSet.name}}</h3>
-    <div class="card-body">
-      <h6 class="card-subtitle">{{brickSet.subCategory.category.name}}</h6>
+<div class="container-fluid brickSet-card-container bg-info ">
+  <div class="text-center bg-light text-white brickSet-card border-5 rounded-3" *ngFor="let brickSet of brickSets">
+    <h4 class="card-header bg-primary rounded-3 brickSet-card-header">{{brickSet.name}}</h4>
+    <br>
+    <div class="card-body rounded-3 brickSet-card-body p-0">
+      <div class="bg-success brickSet-card-body-content rounded-3">{{brickSet.subCategory.category.name}}</div>
+      <div class="bg-danger brickSet-card-body-content rounded-3">{{brickSet.subCategory.name}}</div>
     </div>
-    <div class="card-footer text-muted">
+    <br>
+    <div class="card-footer text-muted bg-warning rounded-3 brickSet-card-footer">
       <a href="#">
-        <h5 class="card-title text-warning">{{brickSet.serialNumber}}</h5>
+        <h5 class="card-title text-light" title="voir en détails">{{brickSet.serialNumber}}</h5>
       </a>
     </div>
   </div>

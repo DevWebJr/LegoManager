@@ -10,12 +10,14 @@ import {CategoryService} from "../services/category.service";
 import {ImageService} from "../services/image.service";
 import {SubCategoryService} from "../services/sub-category.service";
 import {HttpClientModule} from "@angular/common/http";
+import { HomeComponent } from './layouts/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    BrickSetListComponent
+    BrickSetListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
