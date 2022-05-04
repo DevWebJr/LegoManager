@@ -2,7 +2,7 @@
 
   <div class="text-center bg-light text-white brickSet-card border-5 rounded-3 d-flex justify-content-center align-items-center">
     <div class="add-button">
-      <a class="nav-link text-info border-black" href="" title="Ajouter un set">
+      <a class="nav-link text-info border-black " data-bs-toggle="modal" data-bs-target="#exampleModal" href="" title="Ajouter un set">
         <i class="fa-solid fa-plus add-button"></i>
       </a>
     </div>
@@ -19,7 +19,7 @@
     <div class="card-footer text-muted rounded-3 brickSet-card-footer serial-number">
       <a href="#">
         <h5 class="card-title text-light" title="voir en détails">
-          <b class="serial-number-link">{{brickSet.serialNumber}}</b>
+          <b class="serial-number-link">Set n°{{brickSet.serialNumber}} <i class="fa-solid fa-magnifying-glass serial-number-icon"></i> </b>
         </h5>
       </a>
     </div>
@@ -28,9 +28,55 @@
       <button class="btn edit-button" title="Modifier">
         <i class="fa-solid fa-pencil"></i>
       </button>
-      <button class="btn delete-button" title="supprimer">
+      <button class="btn delete-button" title="Supprimer">
         <i class="fa-solid fa-trash-can"></i>
       </button>
     </div>
   </div>
+
+  <div class="modal fade" id="addBrickSetModal" tabindex="-1" role="dialog" aria-labelledby="addBrickSetModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBrickSetModalLabel">Ajouter un set LEGO®</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="name">Nom du set</label>
+              <input type="text" ngModel name="name" class="form-control" id="name" placeholder="nom" required>
+            </div>
+            <div class="form-group">
+              <label for="serialNumber">Numéro de série</label>
+              <input type="text" ngModel name="serialNumber" class="form-control" id="serialNumber" placeholder="serialNumber" required>
+            </div>
+            <div class="form-group">
+              <label for="category">Catégorie</label>
+              <input type="text" ngModel name="category" class="form-control" id="category" placeholder="Catégorie" required>
+            </div>
+            <div class="form-group">
+              <label for="subCategory">Sous-catégorie</label>
+              <input type="text" ngModel name="subCategory" class="form-control" id="subCategory" placeholder="Sous-catégorie" required>
+            </div>
+            <div class="form-group">
+              <label for="price">Image URL</label>
+              <input type="text" ngModel name="price" class="form-control" id="price" placeholder="Prix" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal" title="Fermer">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <button type="submit" class="btn btn-primary" title="Valider">
+                <i class="fa-solid fa-check"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
