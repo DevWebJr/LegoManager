@@ -8,6 +8,7 @@
     </div>
   </div>
 
+  <!-- BrickSet Card -->
   <div class="text-center bg-light text-white brickSet-card border-5 rounded-3" id="main-container" *ngFor="let brickSet of brickSets">
     <h4 class="card-header rounded-3 brickSet-card-header">{{brickSet.name}}</h4>
     <br>
@@ -17,16 +18,26 @@
     </div>
     <br>
     <div class="card-footer text-muted rounded-3 brickSet-card-footer serial-number">
-      <a href="#">
-        <h5 class="card-title text-light" title="voir en détails">
-          <b class="serial-number-link">Set n°{{brickSet.serialNumber}} <i class="fa-solid fa-magnifying-glass serial-number-icon"></i> </b>
-        </h5>
-      </a>
+      <h5 class="card-title text-light" title="voir en détails">
+        <b class="serial-number-link">Set n°{{brickSet.serialNumber}} </b>
+      </h5>
     </div>
     <br>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button id="brickSetDescriptionParent" class="accordion-button collapsed description-button" type="button" data-bs-toggle="collapse" data-bs-target="#brickSetDescription" aria-expanded="false" aria-controls="collapseOne">
+          <b>Description</b>
+        </button>
+      </h2>
+      <div id="brickSetDescription"  class="description-content accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#brickSetDescriptionParent" style="">
+        <div class="accordion-body">
+          <p>{{brickSet.description}}</p>
+        </div>
+      </div>
+    </div>
     <div class="card-footer text-muted rounded-3 brickSet-card-footer d-flex justify-content-around">
       <button class="btn edit-button" title="Modifier">
-        <a (click)="onOpenModal('edit')"  data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Edit">
+        <a (click)="onOpenModal('update')"  data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Edit">
           <i class="fa-solid fa-pencil"></i>
         </a>
       </button>
@@ -87,38 +98,39 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="updateBrickSetModalLabel">Ajouter un set LEGO®</h5>
+          <h5 class="modal-title" id="updateBrickSetModalLabel">Modifier ce set LEGO®</h5>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form #editForm="ngForm">
+<!--            <input type="hidden" ngModel="{{updatedBrickSet?.id}}" name="id" class="form-control" id="id" placeholder="id">-->
             <div class="form-group">
               <label for="updateBrickSetName"></label>
-              <input type="text" ngModel name="updateBrickSetName" class="form-control" id="updateBrickSetName" placeholder="Nom du set" required>
+              <input type="text" ngModel="{{updatedBrickSet?.name}}" name="updateBrickSetName" class="form-control" id="updateBrickSetName" placeholder="Nom du set" required>
             </div>
             <div class="form-group">
               <label for="updateBrickSetSerialNumber"></label>
-              <input type="text" ngModel name="updateBrickSetSerialNumber" class="form-control" id="updateBrickSetSerialNumber" placeholder="Numéro de série" required>
+              <input type="text" ngModel="{{updatedBrickSet?.serialNumber}}" name="updateBrickSetSerialNumber" class="form-control" id="updateBrickSetSerialNumber" placeholder="Numéro de série" required>
             </div>
             <div class="form-group">
               <label for="updateBrickSetCategory"></label>
-              <input type="text" ngModel name="updateBrickSetCategory" class="form-control" id="updateBrickSetCategory" placeholder="Catégorie" required>
+              <input type="text" ngModel="{{updatedBrickSet?.category}}" name="updateBrickSetCategory" class="form-control" id="updateBrickSetCategory" placeholder="Catégorie" required>
             </div>
             <div class="form-group">
               <label for="updateBrickSetSubCategory"></label>
-              <input type="text" ngModel name="updateBrickSetSubCategory" class="form-control" id="updateBrickSetSubCategory" placeholder="Sous-catégorie" required>
+              <input type="text" ngModel="{{updatedBrickSet?.subCategory}}" name="updateBrickSetSubCategory" class="form-control" id="updateBrickSetSubCategory" placeholder="Sous-catégorie" required>
             </div>
             <div class="form-group">
               <label for="updateBrickSetPrice"></label>
-              <input type="text" ngModel name="updateBrickSetPrice" class="form-control" id="updateBrickSetPrice" placeholder="Prix" required>
+              <input type="text" ngModel="{{updatedBrickSet?.price}}" name="updateBrickSetPrice" class="form-control" id="updateBrickSetPrice" placeholder="Prix" required>
             </div>
             <div class="modal-footer">
               <button type="button" id="updateBrickSetForm" class="btn btn-secondary" data-bs-dismiss="modal" title="Fermer">
                 <i class="fa-solid fa-xmark"></i>
               </button>
-              <button type="submit" class="btn btn-primary" title="Valider">
+              <button (click)="onUpdateBrickSet(editForm.value)" type="submit" class="btn btn-primary" title="Valider">
                 <i class="fa-solid fa-check"></i>
               </button>
             </div>
