@@ -1,4 +1,13 @@
 <div class="container-fluid brickSet-card-container">
+
+  <div class="text-center bg-light text-white brickSet-card border-5 rounded-3 d-flex justify-content-center align-items-center">
+    <div class="add-button">
+      <a class="nav-link text-info border-black" href="" title="Ajouter un set">
+        <i class="fa-solid fa-plus add-button"></i>
+      </a>
+    </div>
+  </div>
+
   <div class="text-center bg-light text-white brickSet-card border-5 rounded-3" *ngFor="let brickSet of brickSets">
     <h4 class="card-header rounded-3 brickSet-card-header">{{brickSet.name}}</h4>
     <br>
