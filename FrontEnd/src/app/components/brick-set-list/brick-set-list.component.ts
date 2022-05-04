@@ -72,7 +72,7 @@ export class BrickSetListComponent implements OnInit {
     document.getElementById("updateBrickSetForm")?.click();
   }
 
-  public onDeleteEmployee(brickSetId: number): void {
+  public onDeleteBrickSet(brickSetId: number): void {
     this.brickSetService.deleteBrickSet(brickSetId)
       .subscribe({
         next: (response: void) => {

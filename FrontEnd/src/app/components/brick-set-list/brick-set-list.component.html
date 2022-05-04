@@ -29,7 +29,7 @@
           <b>Description</b>
         </button>
       </h2>
-      <div id="brickSetDescription"  class="description-content accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#brickSetDescriptionParent" style="">
+        <div id="brickSetDescription"  class="description-content accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#brickSetDescriptionParent" style="">
         <div class="accordion-body">
           <p>{{brickSet.description}}</p>
         </div>
@@ -104,8 +104,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #editForm="ngForm">
-<!--            <input type="hidden" ngModel="{{updatedBrickSet?.id}}" name="id" class="form-control" id="id" placeholder="id">-->
+          <form #updateForm="ngForm">
+            <input type="hidden" ngModel="{{updatedBrickSet?.id}}" name="id" class="form-control" id="id" placeholder="id">
             <div class="form-group">
               <label for="updateBrickSetName"></label>
               <input type="text" ngModel="{{updatedBrickSet?.name}}" name="updateBrickSetName" class="form-control" id="updateBrickSetName" placeholder="Nom du set" required>
@@ -127,11 +127,11 @@
               <input type="text" ngModel="{{updatedBrickSet?.price}}" name="updateBrickSetPrice" class="form-control" id="updateBrickSetPrice" placeholder="Prix" required>
             </div>
             <div class="modal-footer">
-              <button type="button" id="updateBrickSetForm" class="btn btn-secondary" data-bs-dismiss="modal" title="Fermer">
-                <i class="fa-solid fa-xmark"></i>
+              <button type="button" id="updateBrickSetForm" class="btn btn-danger m-2" data-bs-dismiss="modal">
+                Annuler
               </button>
-              <button (click)="onUpdateBrickSet(editForm.value)" type="submit" class="btn btn-primary" title="Valider">
-                <i class="fa-solid fa-check"></i>
+              <button [disabled]="updateForm.invalid" type="submit" class="btn btn-success m-2">
+                Valider
               </button>
             </div>
           </form>
@@ -151,10 +151,10 @@
           </button>
         </div>
         <div class="modal-body">
-<!--          <p>Êtes-vous certain de vouloir supprimer le set n° {{brickSet?.serialNumber}}?</p>-->
+          <p>Êtes-vous certain de vouloir supprimer ce set?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-<!--            <button (click)="onDeleteBrickSet(deleteBrickSet?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>-->
+            <button (click)="onDeleteBrickSet(deletedBrickSet?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
           </div>
         </div>
       </div>
