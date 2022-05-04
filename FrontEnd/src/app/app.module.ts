@@ -11,6 +11,7 @@ import {ImageService} from "../services/image.service";
 import {SubCategoryService} from "../services/sub-category.service";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './layouts/home/home.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './layouts/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     BrickSetService,

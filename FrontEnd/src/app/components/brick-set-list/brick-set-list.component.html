@@ -2,13 +2,13 @@
 
   <div class="text-center bg-light text-white brickSet-card border-5 rounded-3 d-flex justify-content-center align-items-center">
     <div class="add-button">
-      <a class="nav-link text-info border-black " data-bs-toggle="modal" data-bs-target="#exampleModal" href="" title="Ajouter un set">
+      <a data-bs-toggle="modal" data-bs-target="#addBrickSetModal" (click)="onOpenModal('add')" title="Ajouter un set" id="addButton">
         <i class="fa-solid fa-plus add-button"></i>
       </a>
     </div>
   </div>
 
-  <div class="text-center bg-light text-white brickSet-card border-5 rounded-3" *ngFor="let brickSet of brickSets">
+  <div class="text-center bg-light text-white brickSet-card border-5 rounded-3" id="main-container" *ngFor="let brickSet of brickSets">
     <h4 class="card-header rounded-3 brickSet-card-header">{{brickSet.name}}</h4>
     <br>
     <div class="card-body rounded-3 brickSet-card-body p-0">
@@ -26,47 +26,96 @@
     <br>
     <div class="card-footer text-muted rounded-3 brickSet-card-footer d-flex justify-content-around">
       <button class="btn edit-button" title="Modifier">
-        <i class="fa-solid fa-pencil"></i>
+        <a (click)="onOpenModal('edit')"  data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Edit">
+          <i class="fa-solid fa-pencil"></i>
+        </a>
       </button>
       <button class="btn delete-button" title="Supprimer">
-        <i class="fa-solid fa-trash-can"></i>
+        <a (click)="onOpenModal('delete')" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Delete">
+          <i class="fa-solid fa-trash-can"></i>
+        </a>
       </button>
     </div>
   </div>
 
+  <!-- Add Modal -->
   <div class="modal fade" id="addBrickSetModal" tabindex="-1" role="dialog" aria-labelledby="addBrickSetModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="addBrickSetModalLabel">Ajouter un set LEGO®</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddBrickSet(addForm)">
+            <div class="form-group">
+              <label for="addBrickSetName"></label>
+              <input type="text" ngModel name="addBrickSetName" class="form-control" id="addBrickSetName" placeholder="Nom du set" required>
+            </div>
+            <div class="form-group">
+              <label for="addBrickSetSerialNumber"></label>
+              <input type="text" ngModel name="addBrickSetSerialNumber" class="form-control" id="addBrickSetSerialNumber" placeholder="Numéro de série" required>
+            </div>
+            <div class="form-group">
+              <label for="addBrickSetCategory"></label>
+              <input type="text" ngModel name="addBrickSetCategory" class="form-control" id="addBrickSetCategory" placeholder="Catégorie" required>
+            </div>
+            <div class="form-group">
+              <label for="addBrickSetSubCategory"></label>
+              <input type="text" ngModel name="addBrickSetSubCategory" class="form-control" id="addBrickSetSubCategory" placeholder="Sous-catégorie" required>
+            </div>
+            <div class="form-group">
+              <label for="addBrickSetPrice"></label>
+              <input type="text" ngModel name="addBrickSetPrice" class="form-control" id="addBrickSetPrice" placeholder="Prix" required>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" id="addBrickSetForm" class="btn btn-danger m-2" data-bs-dismiss="modal">
+                Annuler
+              </button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-success m-2">
+                Valider
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Modal -->
+  <div class="modal fade" id="updateBrickSetModal" tabindex="-1" role="dialog" aria-labelledby="updateBrickSetModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateBrickSetModalLabel">Ajouter un set LEGO®</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="name">Nom du set</label>
-              <input type="text" ngModel name="name" class="form-control" id="name" placeholder="nom" required>
+              <label for="updateBrickSetName"></label>
+              <input type="text" ngModel name="updateBrickSetName" class="form-control" id="updateBrickSetName" placeholder="Nom du set" required>
             </div>
             <div class="form-group">
-              <label for="serialNumber">Numéro de série</label>
-              <input type="text" ngModel name="serialNumber" class="form-control" id="serialNumber" placeholder="serialNumber" required>
+              <label for="updateBrickSetSerialNumber"></label>
+              <input type="text" ngModel name="updateBrickSetSerialNumber" class="form-control" id="updateBrickSetSerialNumber" placeholder="Numéro de série" required>
             </div>
             <div class="form-group">
-              <label for="category">Catégorie</label>
-              <input type="text" ngModel name="category" class="form-control" id="category" placeholder="Catégorie" required>
+              <label for="updateBrickSetCategory"></label>
+              <input type="text" ngModel name="updateBrickSetCategory" class="form-control" id="updateBrickSetCategory" placeholder="Catégorie" required>
             </div>
             <div class="form-group">
-              <label for="subCategory">Sous-catégorie</label>
-              <input type="text" ngModel name="subCategory" class="form-control" id="subCategory" placeholder="Sous-catégorie" required>
+              <label for="updateBrickSetSubCategory"></label>
+              <input type="text" ngModel name="updateBrickSetSubCategory" class="form-control" id="updateBrickSetSubCategory" placeholder="Sous-catégorie" required>
             </div>
             <div class="form-group">
-              <label for="price">Image URL</label>
-              <input type="text" ngModel name="price" class="form-control" id="price" placeholder="Prix" required>
+              <label for="updateBrickSetPrice"></label>
+              <input type="text" ngModel name="updateBrickSetPrice" class="form-control" id="updateBrickSetPrice" placeholder="Prix" required>
             </div>
             <div class="modal-footer">
-              <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal" title="Fermer">
+              <button type="button" id="updateBrickSetForm" class="btn btn-secondary" data-bs-dismiss="modal" title="Fermer">
                 <i class="fa-solid fa-xmark"></i>
               </button>
               <button type="submit" class="btn btn-primary" title="Valider">
@@ -74,6 +123,27 @@
               </button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteBrickSetModal" tabindex="-1" role="dialog" aria-labelledby="deleteBrickSetModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteBrickSetModelLabel">Supprimer un set</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<!--          <p>Êtes-vous certain de vouloir supprimer le set n° {{brickSet?.serialNumber}}?</p>-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+<!--            <button (click)="onDeleteBrickSet(deleteBrickSet?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>-->
+          </div>
         </div>
       </div>
     </div>
