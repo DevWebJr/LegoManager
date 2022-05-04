@@ -1,5 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+body{
+  background-color: #82ccdd;
+}
+
 a{
   text-decoration: none;
 }

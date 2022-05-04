@@ -1,16 +1,27 @@
-<div class="container-fluid brickSet-card-container bg-info ">
+<div class="container-fluid brickSet-card-container">
   <div class="text-center bg-light text-white brickSet-card border-5 rounded-3" *ngFor="let brickSet of brickSets">
-    <h4 class="card-header bg-primary rounded-3 brickSet-card-header">{{brickSet.name}}</h4>
+    <h4 class="card-header rounded-3 brickSet-card-header">{{brickSet.name}}</h4>
     <br>
     <div class="card-body rounded-3 brickSet-card-body p-0">
-      <div class="bg-success brickSet-card-body-content rounded-3">{{brickSet.subCategory.category.name}}</div>
-      <div class="bg-danger brickSet-card-body-content rounded-3">{{brickSet.subCategory.name}}</div>
+      <div class="brickSet-card-body-content category rounded-3">{{brickSet.subCategory.category.name}}</div>
+      <div class="brickSet-card-body-content sub-category rounded-3">{{brickSet.subCategory.name}}</div>
     </div>
     <br>
-    <div class="card-footer text-muted bg-warning rounded-3 brickSet-card-footer">
+    <div class="card-footer text-muted rounded-3 brickSet-card-footer serial-number">
       <a href="#">
-        <h5 class="card-title text-light" title="voir en détails">{{brickSet.serialNumber}}</h5>
+        <h5 class="card-title text-light" title="voir en détails">
+          <b class="serial-number-link">{{brickSet.serialNumber}}</b>
+        </h5>
       </a>
+    </div>
+    <br>
+    <div class="card-footer text-muted rounded-3 brickSet-card-footer d-flex justify-content-around">
+      <button class="btn edit-button" title="Modifier">
+        <i class="fa-solid fa-pencil"></i>
+      </button>
+      <button class="btn delete-button" title="supprimer">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
     </div>
   </div>
 </div>

@@ -19,6 +19,7 @@
   align-content: center;
   min-height: 5.3vw;
   max-height: 5.3vw;
+  background-color: #6a89cc;
 }
 
 .brickSet-card-body{
@@ -29,6 +30,33 @@
 
 .brickSet-card-body-content{
   padding: 1.5vw;
+}
+
+.category{
+  background-color: #38ada9;
+}
+
+.sub-category{
+  background-color: #f8c291;
+}
+
+.serial-number{
+  background-color: #b8e994;
+  color: #0a3d62;
+}
+
+.serial-number-link{
+  color: #6a89cc;
+}
+
+.edit-button{
+  color: #ecf0f1;
+  background-color: #e58e26;
+}
+
+.delete-button{
+  color: #ecf0f1;
+  background-color: #e55039;
 }
 
 .brickSet-card-footer{

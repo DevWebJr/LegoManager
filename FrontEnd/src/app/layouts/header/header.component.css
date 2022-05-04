@@ -1,6 +1,19 @@
+.header-nav-bar{
+  background-color: #38ada9;
+}
+
 #logo{
   min-height: 2.3vw;
   max-height: 2.3vw;
   min-width: 3.2vw;
   max-width: 3.2vw;
+}
+
+.add-button{
+  padding: .3vw;
+  margin-right: 1.5vw;
+  border-radius: .5rem;
+  border: solid 1px #f5f6fa;
+  color: #f5f6fa;
+
 }
