@@ -19,8 +19,8 @@ public class SubCategoryController {
 
     @GetMapping("/all")
     public ResponseEntity<List<SubCategory>> getAllCategories(){
-        List<SubCategory> categorys = subCategoryService.findAllSubCategories();
-        return new ResponseEntity<>(categorys, HttpStatus.OK);
+        List<SubCategory> categories = subCategoryService.findAllSubCategories();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")

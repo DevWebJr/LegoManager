@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {BrickSet} from "../../../interfaces/brick-set";
 import {BrickSetService} from "../../../services/brick-set.service";
+import {CategoryService} from "../../../services/category.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgForm} from '@angular/forms';
 import {SubCategory} from "../../../interfaces/sub-category";
 import {Category} from "../../../interfaces/category";
+import {SubCategoryService} from "../../../services/sub-category.service";
 
 @Component({
   selector: 'app-brick-set-list',
@@ -23,17 +25,21 @@ export class BrickSetListComponent implements OnInit {
   subCategories!: Array<SubCategory>;
   selectedSubCategory: SubCategory | undefined;
 
-  constructor(private brickSetService: BrickSetService) {}
+  constructor(private brickSetService: BrickSetService,
+              private categoryService: CategoryService,
+              private subCategoryService: SubCategoryService) {}
 
   ngOnInit() {
     this.getBrickSets();
+    this.getCategories();
+    this.getSubCategories();
   }
 
-  updateCategory(e: any){
+  public updateCategory(e: any){
     this.selectedCategory = e.target.value;
   }
 
-  updateSubCategory(e: any){
+  public updateSubCategory(e: any){
     this.selectedSubCategory = e.target.value;
   }
 
@@ -42,6 +48,31 @@ export class BrickSetListComponent implements OnInit {
       (response:BrickSet[]) => {
         this.brickSets = response;
         // console.log(this.brickSets)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  public getCategories(): void {
+    this.categoryService.getCategories().subscribe(
+      (response:Category[]) => {
+        this.categories = response;
+        // console.log(this.categories)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+  public getSubCategories(): void {
+    this.subCategoryService.getSubCategories().subscribe(
+      (response:SubCategory[]) => {
+
+        this.subCategories = response;
+        console.log(this.subCategories)
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

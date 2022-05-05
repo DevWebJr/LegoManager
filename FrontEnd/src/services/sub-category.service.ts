@@ -13,18 +13,18 @@ export class SubCategoryService {
   constructor(private http: HttpClient) {}
 
   public getSubCategories(): Observable<SubCategory[]> {
-    return this.http.get<SubCategory[]>(`${this.apiServerUrl}/sub-category/all`)
+    return this.http.get<SubCategory[]>(`${this.apiServerUrl}/subcategory/all`)
   }
 
   public addSubCategory(subCategory: SubCategory): Observable<SubCategory> {
-    return this.http.post<SubCategory>(`${this.apiServerUrl}/sub-category/add`, subCategory);
+    return this.http.post<SubCategory>(`${this.apiServerUrl}/subcategory/add`, subCategory);
   }
 
   public updateSubCategory(subCategory: SubCategory): Observable<SubCategory> {
-    return this.http.put<SubCategory>(`${this.apiServerUrl}/sub-category/update`, subCategory);
+    return this.http.put<SubCategory>(`${this.apiServerUrl}/subcategory/update`, subCategory);
   }
 
   public deleteSubCategory(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/sub-category/${id}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/subcategory/${id}`);
   }
 }

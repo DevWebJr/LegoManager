@@ -19,22 +19,18 @@
     <br>
     <div class="card-footer text-muted rounded-3 brickSet-card-footer serial-number">
       <h5 class="card-title text-light" title="voir en détails">
-        <b class="serial-number-link">Set n°{{brickSet.serialNumber}} </b>
+        <b class="serial-number-link">Set n°{{brickSet.serialNumber}}</b>
       </h5>
     </div>
     <br>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button id="brickSetDescriptionParent" class="accordion-button collapsed description-button" type="button" data-bs-toggle="collapse" data-bs-target="#brickSetDescription" aria-expanded="false" aria-controls="collapseOne">
-          <b>Description</b>
-        </button>
-      </h2>
-        <div id="brickSetDescription"  class="description-content accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#brickSetDescriptionParent" style="">
-        <div class="accordion-body">
-          <p>{{brickSet.description}}</p>
-        </div>
-      </div>
+
+    <button class="btn description-button" type="button" data-bs-toggle="collapse" data-bs-target="#brickSetDescription" aria-expanded="false" aria-controls="collapseExample">
+      Description
+    </button>
+    <div class="collapse description-content" id="brickSetDescription">
+        <p>{{brickSet.description}}</p>
     </div>
+
     <div class="card-footer text-muted rounded-3 brickSet-card-footer d-flex justify-content-around">
       <button class="btn edit-button" title="Modifier">
         <a (click)="onOpenModal('update')"  data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Edit">
@@ -68,12 +64,22 @@
               <input type="text" ngModel name="serialNumber" class="form-control" id="addBrickSetSerialNumber" placeholder="Numéro de série" required>
             </div>
             <div class="form-group">
-              <label for="addBrickSetCategory"></label>
-              <input type="text" ngModel name="category" class="form-control" id="addBrickSetCategory" placeholder="Catégorie" required>
+              <label for="category"></label>
+              <select id="category" class="form-control form-select m-lg-1" aria-label="Default select example"
+                      [(ngModel)]="selectedCategory"
+                      (change)="updateCategory($event)">
+                <option [ngValue]="undefined" selected>Catégorie</option>
+                <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+              </select>
             </div>
             <div class="form-group">
-              <label for="addBrickSetSubCategory"></label>
-              <input type="text" ngModel name="subCategory" class="form-control" id="addBrickSetSubCategory" placeholder="Sous-catégorie" required>
+              <label for="subCategory"></label>
+              <select id="subCategory" class="form-control form-select m-lg-1" aria-label="Default select example"
+                      [(ngModel)]="selectedSubCategory"
+                      (change)="updateCategory($event)">
+                <option [ngValue]="undefined" selected>Sous-Catégorie</option>
+                <option *ngFor="let subCategory of subCategories" [ngValue]="subCategory">{{subCategory.name}}</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="addBrickSetPrice"></label>
@@ -127,7 +133,7 @@
               <label for="subCategory"></label>
               <select id="subCategory" class="form-control form-select m-lg-1" aria-label="Default select example"
                       [(ngModel)]="selectedSubCategory"
-                        (change)="updateSubCategory($event)">
+                      (change)="updateCategory($event)">
                 <option [ngValue]="undefined" selected>Sous-Catégorie</option>
                 <option *ngFor="let subCategory of subCategories" [ngValue]="subCategory">{{subCategory.name}}</option>
               </select>
