@@ -1,0 +1,10 @@
+.category-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-card{
+  background-color: #38ada9;
+}
+

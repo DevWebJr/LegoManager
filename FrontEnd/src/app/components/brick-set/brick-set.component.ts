@@ -9,11 +9,11 @@ import {Category} from "../../../interfaces/category";
 import {SubCategoryService} from "../../../services/sub-category.service";
 
 @Component({
-  selector: 'app-brick-set-list',
-  templateUrl: './brick-set-list.component.html',
-  styleUrls: ['./brick-set-list.component.css']
+  selector: 'app-brick-set',
+  templateUrl: './brick-set.component.html',
+  styleUrls: ['./brick-set.component.css']
 })
-export class BrickSetListComponent implements OnInit {
+export class BrickSetComponent implements OnInit {
 
   public brickSets!: BrickSet[];
   public updatedBrickSet!: BrickSet;

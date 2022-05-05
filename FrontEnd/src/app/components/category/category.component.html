@@ -1,0 +1,9 @@
+<div class="container-fluid category-container">
+  <div *ngFor="let category of categories">
+    <button class="btn btn-block m-4 border-light rounded-3 text-center text-light category-card" disabled>{{category.name}}</button>
+    <div>
+      {{category.details}}
+    </div>
+  </div>
+</div>
+
