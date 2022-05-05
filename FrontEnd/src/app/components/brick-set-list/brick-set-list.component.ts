@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {BrickSet} from "../../../interfaces/brick-set";
 import {BrickSetService} from "../../../services/brick-set.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import { NgForm } from '@angular/forms';
+import {NgForm} from '@angular/forms';
+import {SubCategory} from "../../../interfaces/sub-category";
+import {Category} from "../../../interfaces/category";
 
 @Component({
   selector: 'app-brick-set-list',
@@ -12,13 +14,27 @@ import { NgForm } from '@angular/forms';
 export class BrickSetListComponent implements OnInit {
 
   public brickSets!: BrickSet[];
-  public updatedBrickSet!: any;
-  public deletedBrickSet!: any;
+  public updatedBrickSet!: BrickSet;
+  public deletedBrickSet!: BrickSet;
+
+  categories!: Array<Category>;
+  selectedCategory: Category | undefined;
+
+  subCategories!: Array<SubCategory>;
+  selectedSubCategory: SubCategory | undefined;
 
   constructor(private brickSetService: BrickSetService) {}
 
   ngOnInit() {
     this.getBrickSets();
+  }
+
+  updateCategory(e: any){
+    this.selectedCategory = e.target.value;
+  }
+
+  updateSubCategory(e: any){
+    this.selectedSubCategory = e.target.value;
   }
 
   public getBrickSets(): void {
@@ -49,6 +65,8 @@ export class BrickSetListComponent implements OnInit {
   }
 
   public onAddBrickSet(addForm: NgForm): void{
+    // console.log(addForm);
+
     this.brickSetService.addBrickSet(addForm.value)
       .subscribe({
         next: (response: BrickSet) => {
@@ -81,8 +99,6 @@ export class BrickSetListComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => { alert(error.message); }
       });
-
   }
-
 
 }

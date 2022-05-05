@@ -60,24 +60,24 @@
         <div class="modal-body">
           <form #addForm="ngForm" (ngSubmit)="onAddBrickSet(addForm)">
             <div class="form-group">
-              <label for="addBrickSetName"></label>
-              <input type="text" ngModel name="addBrickSetName" class="form-control" id="addBrickSetName" placeholder="Nom du set" required>
+              <label for="name"></label>
+              <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Nom du set" required>
             </div>
             <div class="form-group">
               <label for="addBrickSetSerialNumber"></label>
-              <input type="text" ngModel name="addBrickSetSerialNumber" class="form-control" id="addBrickSetSerialNumber" placeholder="Numéro de série" required>
+              <input type="text" ngModel name="serialNumber" class="form-control" id="addBrickSetSerialNumber" placeholder="Numéro de série" required>
             </div>
             <div class="form-group">
               <label for="addBrickSetCategory"></label>
-              <input type="text" ngModel name="addBrickSetCategory" class="form-control" id="addBrickSetCategory" placeholder="Catégorie" required>
+              <input type="text" ngModel name="category" class="form-control" id="addBrickSetCategory" placeholder="Catégorie" required>
             </div>
             <div class="form-group">
               <label for="addBrickSetSubCategory"></label>
-              <input type="text" ngModel name="addBrickSetSubCategory" class="form-control" id="addBrickSetSubCategory" placeholder="Sous-catégorie" required>
+              <input type="text" ngModel name="subCategory" class="form-control" id="addBrickSetSubCategory" placeholder="Sous-catégorie" required>
             </div>
             <div class="form-group">
               <label for="addBrickSetPrice"></label>
-              <input type="text" ngModel name="addBrickSetPrice" class="form-control" id="addBrickSetPrice" placeholder="Prix" required>
+              <input type="text" ngModel name="price" class="form-control" id="addBrickSetPrice" placeholder="Prix" required>
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button type="button" id="addBrickSetForm" class="btn btn-danger m-2" data-bs-dismiss="modal">
@@ -115,12 +115,22 @@
               <input type="text" ngModel="{{updatedBrickSet?.serialNumber}}" name="updateBrickSetSerialNumber" class="form-control" id="updateBrickSetSerialNumber" placeholder="Numéro de série" required>
             </div>
             <div class="form-group">
-              <label for="updateBrickSetCategory"></label>
-              <input type="text" ngModel="{{updatedBrickSet?.category}}" name="updateBrickSetCategory" class="form-control" id="updateBrickSetCategory" placeholder="Catégorie" required>
+              <label for="category"></label>
+              <select id="category" class="form-control form-select m-lg-1" aria-label="Default select example"
+                      [(ngModel)]="selectedCategory"
+                        (change)="updateCategory($event)">
+                <option [ngValue]="undefined" selected>Catégorie</option>
+                <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+              </select>
             </div>
             <div class="form-group">
-              <label for="updateBrickSetSubCategory"></label>
-              <input type="text" ngModel="{{updatedBrickSet?.subCategory}}" name="updateBrickSetSubCategory" class="form-control" id="updateBrickSetSubCategory" placeholder="Sous-catégorie" required>
+              <label for="subCategory"></label>
+              <select id="subCategory" class="form-control form-select m-lg-1" aria-label="Default select example"
+                      [(ngModel)]="selectedSubCategory"
+                        (change)="updateSubCategory($event)">
+                <option [ngValue]="undefined" selected>Sous-Catégorie</option>
+                <option *ngFor="let subCategory of subCategories" [ngValue]="subCategory">{{subCategory.name}}</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="updateBrickSetPrice"></label>
@@ -154,7 +164,7 @@
           <p>Êtes-vous certain de vouloir supprimer ce set?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button (click)="onDeleteBrickSet(deletedBrickSet?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+<!--            <button (click)="onDeleteBrickSet(deletedBrickSet.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>-->
           </div>
         </div>
       </div>
