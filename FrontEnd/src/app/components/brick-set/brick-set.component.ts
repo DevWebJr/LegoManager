@@ -17,7 +17,7 @@ export class BrickSetComponent implements OnInit {
 
   public brickSets!: BrickSet[];
   public updatedBrickSet!: BrickSet;
-  public deletedBrickSet!: BrickSet;
+  public deletedBrickSet!: any;
 
   categories!: Array<Category>;
   selectedCategory: Category | undefined;

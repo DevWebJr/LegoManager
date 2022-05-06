@@ -1,5 +1,4 @@
 <div class="container-fluid brickSet-card-container">
-
   <div class="text-center bg-light text-white brickSet-card border-5 rounded-3 d-flex justify-content-center align-items-center">
     <div class="add-button">
       <a data-bs-toggle="modal" data-bs-target="#addBrickSetModal" (click)="onOpenModal('add')" title="Ajouter un set" id="addButton">
@@ -23,14 +22,12 @@
       </h5>
     </div>
     <br>
-
     <button class="btn description-button" type="button" data-bs-toggle="collapse" data-bs-target="#brickSetDescription" aria-expanded="false" aria-controls="collapseExample">
       Description
     </button>
     <div class="collapse description-content" id="brickSetDescription">
         <p>{{brickSet.description}}</p>
     </div>
-
     <div class="card-footer text-muted rounded-3 brickSet-card-footer d-flex justify-content-around">
       <button class="btn edit-button" title="Modifier">
         <a (click)="onOpenModal('update')"  data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Edit">
@@ -113,12 +110,12 @@
           <form #updateForm="ngForm">
             <input type="hidden" ngModel="{{updatedBrickSet?.id}}" name="id" class="form-control" id="id" placeholder="id">
             <div class="form-group">
-              <label for="updateBrickSetName"></label>
-              <input type="text" ngModel="{{updatedBrickSet?.name}}" name="updateBrickSetName" class="form-control" id="updateBrickSetName" placeholder="Nom du set" required>
+              <label for="name"></label>
+              <input type="text" ngModel="{{updatedBrickSet?.name}}" name="name" class="form-control" id="name" placeholder="Nom du set" required>
             </div>
             <div class="form-group">
-              <label for="updateBrickSetSerialNumber"></label>
-              <input type="text" ngModel="{{updatedBrickSet?.serialNumber}}" name="updateBrickSetSerialNumber" class="form-control" id="updateBrickSetSerialNumber" placeholder="Numéro de série" required>
+              <label for="serialNumber"></label>
+              <input type="text" ngModel="{{updatedBrickSet?.serialNumber}}" name="serialNumber" class="form-control" id="serialNumber" placeholder="Numéro de série" required>
             </div>
             <div class="form-group">
               <label for="category"></label>
@@ -139,14 +136,15 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="updateBrickSetPrice"></label>
-              <input type="text" ngModel="{{updatedBrickSet?.price}}" name="updateBrickSetPrice" class="form-control" id="updateBrickSetPrice" placeholder="Prix" required>
+              <label for="price"></label>
+              <input type="text" ngModel="{{updatedBrickSet?.price}}" id="price" name="price" class="form-control" placeholder="Prix" required>
             </div>
             <div class="modal-footer">
               <button type="button" id="updateBrickSetForm" class="btn btn-danger m-2" data-bs-dismiss="modal">
                 Annuler
               </button>
-              <button [disabled]="updateForm.invalid" type="submit" class="btn btn-success m-2">
+              <button [disabled]="updateForm.invalid" type="submit" class="btn btn-success m-2"
+                (click)="onUpdateBrickSet(updatedBrickSet)">
                 Valider
               </button>
             </div>
@@ -170,11 +168,10 @@
           <p>Êtes-vous certain de vouloir supprimer ce set?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-<!--            <button (click)="onDeleteBrickSet(deletedBrickSet.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>-->
+            <button (click)="onDeleteBrickSet(deletedBrickSet .id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
